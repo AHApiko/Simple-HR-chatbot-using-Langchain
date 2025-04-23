@@ -7,5 +7,5 @@ I work in HR, and I’m really familiar with the Convenio de la Publicidad (the 
 
 Also, since I already know the answers to most of these questions, it’s a great way to check if the chatbot is doing its job correctly.
 
-#Don't use this chatbot as your legal counselor, always double check with your HRBP or your lawyer. As I said, I'm a begginer so this chatbot can make mistakes.
-
+**Don't use this chatbot as your legal counselor, always double check with your HRBP or your lawyer. As I said, I'm a begginer so this chatbot can make mistakes.
+**
