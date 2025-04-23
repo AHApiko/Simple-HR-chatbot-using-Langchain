@@ -11,7 +11,8 @@ from langchain.chains import RetrievalQA
 
 st.set_page_config(page_title="HR Chatbot App", layout="wide")
 st.title("HR Chatbot")
-st.markdown("Ask HR questions!")
+st.caption("An HR assistant")
+st.markdown("### 🤖 How can I help you?")
 
 st.sidebar.header("Configuration")
 api_key = st.sidebar.text_input(
