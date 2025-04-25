@@ -9,20 +9,14 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA  
 
 
-st.set_page_config(page_title="HR Chatbot App", layout="wide")
-st.title("HR Chatbot")
-st.caption("An HR assistant")
-st.markdown("### 🤖 How can I help you?")
+with st.sidebar:
+    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+    "[View the source code](https://github.com/AHApiko/Simple-HR-chatbot-using-Langchain/blob/main/HR_Chatbot.py)"
 
-st.sidebar.header("Configuration")
-api_key = st.sidebar.text_input(
-    "Enter your OpenAI API key", type="password"
-)
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you with HR-related questions?"}]
 
-if not api_key:
-    st.sidebar.warning("Please enter your OpenAI API key to continue.")
-    st.stop()
-os.environ["OPENAI_API_KEY"] = api_key
 
 def get_file_path(filename):
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -64,30 +58,32 @@ def load_qa_chain():
     return qa
 
 
-def main():
-    query = st.text_input("Enter your question:")
-    if st.button("Get Answer"):
-        if not query:
-            st.warning("Please enter a question before submitting.")
-            return
-        with st.spinner("Setting up model..."):
-            qa_chain = load_qa_chain()
-        with st.spinner("Processing..."):
-            result = qa_chain({"query": query})
-        
-        st.subheader("Answer")
-        st.write(result["result"])
+if openai_api_key:
+    os.environ["OPENAI_API_KEY"] = openai_api_key
+    qa_chain = load_qa_chain()
+else:
+    st.stop()
 
-        
-        st.subheader("Source Documents")
-        for doc in result.get("source_documents", []):
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
+
+if user_input := st.chat_input("Ask something HR-related..."):
+    st.session_state.messages.append({"role": "user", "content": user_input})
+    st.chat_message("user").write(user_input)
+
+    with st.spinner("Thinking..."):
+        result = qa_chain({"query": user_input})
+        answer = result["result"]
+        sources = result.get("source_documents", [])
+
+    reply = answer
+    if sources:
+        reply += "\n\n**Sources:**\n"
+        for doc in sources:
             content = doc.page_content.strip().replace("\n", " ")
             excerpt = content[:200] + ("..." if len(content) > 200 else "")
-            metadata = doc.metadata
-            source_info = metadata.get("source", "Unknown source")
-            st.markdown(f"**Source:** {source_info}")
-            st.write(excerpt)
-            st.write("---")
+            source_info = doc.metadata.get("source", "Unknown source")
+            reply += f"- {source_info}: {excerpt}\n"
 
-if __name__ == "__main__":
-    main()
+    st.session_state.messages.append({"role": "assistant", "content": reply})
+    st.chat_message("assistant").write(reply)
