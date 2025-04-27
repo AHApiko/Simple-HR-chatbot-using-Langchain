@@ -25,7 +25,8 @@ Embeds and stores the chunks in a FAISS vector database.
 
 When a user asks a question, the chatbot searches the database for relevant chunks and generates an answer.
 
-##Demo
+## Demo
+
 ![Chatbot Demo](chatbot_demo.gif)
 
 ## Set up
