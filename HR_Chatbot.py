@@ -15,7 +15,7 @@ with st.sidebar:
     "[View the source code](https://github.com/AHApiko/Simple-HR-chatbot-using-Langchain/blob/main/HR_Chatbot.py)"
 
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you with HR-related questions?"}]
+    st.session_state["messages"] = [{"role": "assistant", "content": "Hello! How can I help you with HR-related questions?"}]
 
 
 def get_file_path(filename):
