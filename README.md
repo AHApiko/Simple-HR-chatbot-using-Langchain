@@ -5,7 +5,7 @@ It uses LangChain for document retrieval and processing, and Streamlit for the w
 
 *** Don't use this chatbot as your legal advisor, always check with your HRBP or your lawyer. As I said, I'm a begginer so this chatbot can make mistakes.***
 
-I have years of experience in HR, and I'm passionate about the data. I decided to combine my work and my passion to build something cool and useful, something that makes my everyday working life easier.
+I have years of experience in HR, and I'm passionate about the data. I decided to combine my work and my passion to build something cool and useful, something that makes my everyday working life easier and that let's me practice and learn.
 
 ## Features
 Upload and search HR documents. In this case, "Estatuto de los trabajadores" (labour law), "Convenio de la publicidad" (Adevrtising collective agreement).
