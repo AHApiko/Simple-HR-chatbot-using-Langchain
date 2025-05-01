@@ -34,7 +34,8 @@ When a user asks a question, the chatbot searches the database for relevant chun
 OpenAI API Key needed (https://platform.openai.com/api-keys)
 
 Run the app (bash)
-streamlit run HR_Chatbot.py
+
+<pre> ```bash streamlit run HR_Chatbot.py``` </pre>
 
 ## Documents
 Clean the documents to be used by removing speial characters.
