@@ -35,7 +35,7 @@ OpenAI API Key needed (https://platform.openai.com/api-keys)
 
 Run the app (bash)
 
-<pre> ```bash streamlit run HR_Chatbot.py``` </pre>
+<pre> streamlit run HR_Chatbot.py </pre>
 
 ## Documents
 Clean the documents to be used by removing speial characters.
